@@ -63,3 +63,11 @@ url = "http://localhost:3201"
 [[backends]]
 name = "backend2"
 url = "http://backend2.example.com"
+
+################################################################
+# TCP Backends configuration
+################################################################
+[[tcpBackends]]
+name = "tcpBackend1"
+host = "tcp-backend1.example.com"
+port = "1234"

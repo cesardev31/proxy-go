@@ -45,6 +45,12 @@ type ProvidersConfig struct {
 	Docker DockerConfig `toml:"docker"`
 }
 
+type TCPBackendConfig struct {
+	Name string `toml:"name"`
+	Host string `toml:"host"`
+	Port string `toml:"port"`
+}
+
 type BackendConfig struct {
 	Name string `toml:"name"`
 	URL  string `toml:"url"`
@@ -54,14 +60,15 @@ type AccessLogConfig struct {
 }
 
 type Config struct {
-	Global      GlobalConfig      `toml:"global"`
-	EntryPoints EntryPointsConfig `toml:"entryPoints"`
-	Log         LogConfig         `toml:"log"`
-	API         APIConfig         `toml:"api"`
-	Ping        PingConfig        `toml:"ping"`
-	Providers   ProvidersConfig   `toml:"providers"`
-	Backends    []BackendConfig   `toml:"backends"`
-	AccessLog   AccessLogConfig   `toml:"accessLog"`
+	Global      GlobalConfig       `toml:"global"`
+	EntryPoints EntryPointsConfig  `toml:"entryPoints"`
+	Log         LogConfig          `toml:"log"`
+	API         APIConfig          `toml:"api"`
+	Ping        PingConfig         `toml:"ping"`
+	Providers   ProvidersConfig    `toml:"providers"`
+	Backends    []BackendConfig    `toml:"backends"`
+	AccessLog   AccessLogConfig    `toml:"accessLog"`
+	TCPBackends []TCPBackendConfig `toml:"tcpBackends"`
 }
 
 func LoadConfig(path string) (*Config, error) {
