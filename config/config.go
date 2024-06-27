@@ -49,6 +49,9 @@ type BackendConfig struct {
 	Name string `toml:"name"`
 	URL  string `toml:"url"`
 }
+type AccessLogConfig struct {
+	FilePath string `toml:"filePath"`
+}
 
 type Config struct {
 	Global      GlobalConfig      `toml:"global"`
@@ -58,6 +61,7 @@ type Config struct {
 	Ping        PingConfig        `toml:"ping"`
 	Providers   ProvidersConfig   `toml:"providers"`
 	Backends    []BackendConfig   `toml:"backends"`
+	AccessLog   AccessLogConfig   `toml:"accessLog"`
 }
 
 func LoadConfig(path string) (*Config, error) {

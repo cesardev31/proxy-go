@@ -7,23 +7,27 @@ import (
 	"net/http"
 )
 
-// Server representa el servidor proxy
 type Server struct {
 	config *config.Config
 }
 
-// NewServer crea una nueva instancia del servidor con la configuración proporcionada
 func NewServer(cfg *config.Config) *Server {
 	return &Server{config: cfg}
 }
 
-// Run inicia el servidor proxy
 func (s *Server) Run() error {
 	var backendURLs []string
 	for _, backend := range s.config.Backends {
 		backendURLs = append(backendURLs, backend.URL)
 	}
-	http.HandleFunc("/", proxy.ProxyHandler(backendURLs))
+
+	proxyHandler := proxy.ProxyHandler(backendURLs)
+	loggerMiddleware, err := proxy.NewLoggerMiddleware(s.config.AccessLog.FilePath)
+	if err != nil {
+		return err
+	}
+
+	http.Handle("/", loggerMiddleware(http.HandlerFunc(proxyHandler)))
 	address := s.config.EntryPoints.Web.Address
 	log.Printf("Listening on port %s...", address)
 	return http.ListenAndServe(address, nil)

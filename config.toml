@@ -28,10 +28,10 @@ format = "json"
 ################################################################
 # Access logs configuration
 ################################################################
-# [accessLog]
-# Descomentar las líneas siguientes si quieres habilitar estas configuraciones
-# filePath = "/path/to/log/log.txt"
-# format = "json"
+[accessLog]
+#Descomentar las líneas siguientes si quieres habilitar estas configuraciones
+filePath = "./log/log.txt"
+
 ################################################################
 # API and dashboard configuration
 ################################################################
