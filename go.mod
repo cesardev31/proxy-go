@@ -2,4 +2,4 @@ module github/cesardev31/proxy-go
 
 go 1.22.4
 
-require gopkg.in/yaml.v2 v2.4.0
+require github.com/pelletier/go-toml v1.9.5

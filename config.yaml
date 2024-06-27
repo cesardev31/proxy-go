@@ -1,5 +1,0 @@
-servers:
-  - name: server1
-    url: http://server1.example.com
-  - name: server2
-    url: http://server2.example.com

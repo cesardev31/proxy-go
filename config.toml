@@ -1,0 +1,65 @@
+################################################################
+# Global configuration
+################################################################
+[global]
+checkNewVersion = true
+sendAnonymousUsage = true
+
+################################################################
+# Entrypoints configuration
+################################################################
+[entryPoints]
+
+[entryPoints.web]
+address = ":8080"
+
+[entryPoints.websecure]
+address = ":443"
+
+################################################################
+# Traefik logs configuration
+################################################################
+[log]
+# Descomentar las líneas siguientes si quieres habilitar estas configuraciones
+level = "DEBUG"
+filePath = "log/proxy.log"
+format = "json"
+
+################################################################
+# Access logs configuration
+################################################################
+# [accessLog]
+# Descomentar las líneas siguientes si quieres habilitar estas configuraciones
+# filePath = "/path/to/log/log.txt"
+# format = "json"
+################################################################
+# API and dashboard configuration
+################################################################
+[api]
+# Descomentar las líneas siguientes si quieres habilitar estas configuraciones
+insecure = true
+dashboard = false
+
+################################################################
+# Ping configuration
+################################################################
+[ping]
+# Descomentar las líneas siguientes si quieres habilitar estas configuraciones
+entryPoint = "proxy"
+
+################################################################
+# Docker configuration backend
+################################################################
+[providers.docker]
+
+# Descomentar las líneas siguientes si quieres habilitar estas configuraciones
+# endpoint = "tcp://10.10.10.10:2375"
+# defaultRule = "Host(`{{ normalize .Name }}.docker.localhost`)"
+# exposedByDefault = false
+[[backends]]
+name = "backend1"
+url = "http://localhost:3201"
+
+[[backends]]
+name = "backend2"
+url = "http://backend2.example.com"
